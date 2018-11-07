@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LMTech Rekognition</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+<!-- <div class="container">
+  <h2></h2>
+     <div class="panel panel-primary">
+      <div class="panel-heading"><h3>Results </h3></div>
+      <div class="panel-body">
+          <video id="myVideo" width="600" height="400" controls>
+            <source src={{video_path}} type="video/mp4">
+            <source src="mov_bbb.ogg" type="video/ogg">
+            Your browser does not support HTML5 video.
+          </video>
+          <hr />
+          <br />
+
+          <script>
+          var vid = document.getElementById("myVideo");
+
+          </script>
+          <br> <a href="http://127.0.0.1:8000/video/">Want to try another Video?</a>
+      </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+         <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Living Mind Technologies</h3>
+            </div>
+            <div class="panel-body">
+                <video id="myVideo" width="500" height="300" controls>
+                  <source src={{video_path}} type="video/mp4">
+                  <source src="mov_bbb.ogg" type="video/3gp">
+                  Your browser does not support HTML5 video.
+                </video>
+            </div>
+              </div>
+        </div>
+
+        <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Results</h3>
+                            </div>
+                            <div class="panel-body">
+                              <input type="hidden" id="predictions" name="variable" value="{{ response }}">
+
+                              <br />
+                              <table>
+                                  <tr><th>PREDICTED CONCEPT</th><th>PROBABILITY</th></tr>
+                                  <tr><td id="concept1"></td><td id="probability1"></td></tr>
+                                  <tr><td id="concept2"></td><td id="probability2"></td></tr>
+                                  <tr><td id="concept3"></td><td id="probability3"></td></tr>
+                                  <tr><td id="concept4"></td><td id="probability4"></td></tr>
+                                  <tr><td id="concept5"></td><td id="probability5"></td></tr>
+
+                                  <tr><td id="concept6"></td><td id="probability6"></td></tr>
+                                  <tr><td id="concept7"></td><td id="probability7"></td></tr>
+                                  <tr><td id="concept8"></td><td id="probability8"></td></tr>
+                                  <tr><td id="concept9"></td><td id="probability9"></td></tr>
+                                  <tr><td id="concept10"></td><td id="probability10"></td></tr>
+
+                                  <tr><td id="concept11"></td><td id="probability11"></td></tr>
+                                  <tr><td id="concept12"></td><td id="probability12"></td></tr>
+                                  <tr><td id="concept13"></td><td id="probability13"></td></tr>
+                                  <tr><td id="concept14"></td><td id="probability14"></td></tr>
+                                  <tr><td id="concept15"></td><td id="probability15"></td></tr>
+
+                                  <tr><td id="concept16"></td><td id="probability16"></td></tr>
+                                  <tr><td id="concept17"></td><td id="probability17"></td></tr>
+                                  <tr><td id="concept18"></td><td id="probability18"></td></tr>
+                                  <tr><td id="concept19"></td><td id="probability19"></td></tr>
+                                  <tr><td id="concept20"></td><td id="probability20"></td></tr>
+                              </table>
+
+                              <script>
+
+                              function video_frame_check()
+                              {
+                                  var frame_index = Math.round(vid.currentTime)
+                                  document.getElementById("concept1").innerHTML = predicted_data[frame_index][0].name
+                                  document.getElementById("probability1").innerHTML = predicted_data[frame_index][0].probability
+                                  document.getElementById("concept2").innerHTML = predicted_data[frame_index][1].name
+                                  document.getElementById("probability2").innerHTML = predicted_data[frame_index][1].probability
+                                  document.getElementById("concept3").innerHTML = predicted_data[frame_index][2].name
+                                  document.getElementById("probability3").innerHTML = predicted_data[frame_index][2].probability
+                                  document.getElementById("concept4").innerHTML = predicted_data[frame_index][3].name
+                                  document.getElementById("probability4").innerHTML = predicted_data[frame_index][3].probability
+                                  document.getElementById("concept5").innerHTML = predicted_data[frame_index][4].name
+                                  document.getElementById("probability5").innerHTML = predicted_data[frame_index][4].probability
+
+                                  document.getElementById("concept6").innerHTML = predicted_data[frame_index][5].name
+                                  document.getElementById("probability6").innerHTML = predicted_data[frame_index][5].probability
+                                  document.getElementById("concept7").innerHTML = predicted_data[frame_index][6].name
+                                  document.getElementById("probability7").innerHTML = predicted_data[frame_index][6].probability
+                                  document.getElementById("concept8").innerHTML = predicted_data[frame_index][7].name
+                                  document.getElementById("probability8").innerHTML = predicted_data[frame_index][7].probability
+                                  document.getElementById("concept9").innerHTML = predicted_data[frame_index][8].name
+                                  document.getElementById("probability9").innerHTML = predicted_data[frame_index][8].probability
+                                  document.getElementById("concept10").innerHTML = predicted_data[frame_index][9].name
+                                  document.getElementById("probability10").innerHTML = predicted_data[frame_index][9].probability
+
+                                  document.getElementById("concept11").innerHTML = predicted_data[frame_index][10].name
+                                  document.getElementById("probability11").innerHTML = predicted_data[frame_index][10].probability
+                                  document.getElementById("concept12").innerHTML = predicted_data[frame_index][11].name
+                                  document.getElementById("probability12").innerHTML = predicted_data[frame_index][11].probability
+                                  document.getElementById("concept13").innerHTML = predicted_data[frame_index][12].name
+                                  document.getElementById("probability13").innerHTML = predicted_data[frame_index][12].probability
+                                  document.getElementById("concept14").innerHTML = predicted_data[frame_index][13].name
+                                  document.getElementById("probability14").innerHTML = predicted_data[frame_index][13].probability
+                                  document.getElementById("concept15").innerHTML = predicted_data[frame_index][14].name
+                                  document.getElementById("probability15").innerHTML = predicted_data[frame_index][14].probability
+
+                                  document.getElementById("concept16").innerHTML = predicted_data[frame_index][15].name
+                                  document.getElementById("probability16").innerHTML = predicted_data[frame_index][15].probability
+                                  document.getElementById("concept17").innerHTML = predicted_data[frame_index][16].name
+                                  document.getElementById("probability17").innerHTML = predicted_data[frame_index][16].probability
+                                  document.getElementById("concept18").innerHTML = predicted_data[frame_index][17].name
+                                  document.getElementById("probability18").innerHTML = predicted_data[frame_index][17].probability
+                                  document.getElementById("concept19").innerHTML = predicted_data[frame_index][18].name
+                                  document.getElementById("probability19").innerHTML = predicted_data[frame_index][18].probability
+                                  document.getElementById("concept20").innerHTML = predicted_data[frame_index][19].name
+                                  document.getElementById("probability20").innerHTML = predicted_data[frame_index][19].probability
+                              }
+
+                              var vid = document.getElementById("myVideo");
+                              var predicition_concepts = document.getElementById("predictions").value
+                              var predicted_data = JSON.parse(predicition_concepts)
+                              setInterval("video_frame_check()",1000)
+                              </script>
+
+                              <br> <a href="http://127.0.0.1:8000/video/">Want to try another Video?</a>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
